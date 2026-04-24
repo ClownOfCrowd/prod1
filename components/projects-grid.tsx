@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { projects } from "@/lib/data";
 import { ProjectCategory } from "@/lib/types";
 import { ProjectCard } from "@/components/project-card";
+import { useI18n } from "@/components/language-provider";
 
 const filters: Array<{ key: "all" | ProjectCategory; label: string }> = [
   { key: "all", label: "All" },
@@ -13,7 +14,15 @@ const filters: Array<{ key: "all" | ProjectCategory; label: string }> = [
 ];
 
 export function ProjectsGrid() {
+  const { t } = useI18n();
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]["key"]>("all");
+
+  const labels: Record<(typeof filters)[number]["key"], string> = {
+    all: t.projectFilters.all,
+    residential: t.projectFilters.residential,
+    commercial: t.projectFilters.commercial,
+    renovation: t.projectFilters.renovation,
+  };
 
   const visibleProjects = useMemo(() => {
     if (activeFilter === "all") return projects;
@@ -35,7 +44,7 @@ export function ProjectsGrid() {
             }`}
             aria-pressed={activeFilter === filter.key}
           >
-            {filter.label}
+            {labels[filter.key]}
           </button>
         ))}
       </div>

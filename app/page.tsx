@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Hero } from "@/components/hero";
@@ -8,8 +10,10 @@ import { StatsCounters } from "@/components/stats-counters";
 import { Testimonials } from "@/components/testimonials";
 import { TimelineSteps } from "@/components/timeline-steps";
 import { projects } from "@/lib/data";
+import { useI18n } from "@/components/language-provider";
 
 export default function Home() {
+  const { t } = useI18n();
   const featured = projects.slice(0, 3);
 
   return (
@@ -20,9 +24,9 @@ export default function Home() {
         <Container className="space-y-10">
           <Reveal>
             <SectionHeading
-              eyebrow="Featured Projects"
-              title="Selected work delivered with architectural rigor"
-              description="Recent projects demonstrate our focus on proportion, material quality, and execution discipline across different scales and typologies."
+              eyebrow={t.home.featured.eyebrow}
+              title={t.home.featured.title}
+              description={t.home.featured.description}
             />
           </Reveal>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -36,7 +40,7 @@ export default function Home() {
             href="/projects"
             className="inline-flex rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-white transition hover:border-brand-gold hover:text-brand-gold"
           >
-            Explore all projects
+            {t.home.featured.cta}
           </Link>
         </Container>
       </section>
@@ -45,9 +49,9 @@ export default function Home() {
         <Container className="space-y-10">
           <Reveal>
             <SectionHeading
-              eyebrow="Performance"
-              title="Measured outcomes, not marketing claims"
-              description="We track delivery quality with tangible indicators spanning execution reliability, safety, and client retention."
+              eyebrow={t.home.performance.eyebrow}
+              title={t.home.performance.title}
+              description={t.home.performance.description}
             />
           </Reveal>
           <StatsCounters />
@@ -58,8 +62,8 @@ export default function Home() {
         <Container className="space-y-10">
           <Reveal>
             <SectionHeading
-              eyebrow="How We Work"
-              title="A process built to reduce risk and preserve design intent"
+              eyebrow={t.home.process.eyebrow}
+              title={t.home.process.title}
             />
           </Reveal>
           <TimelineSteps />
@@ -70,8 +74,8 @@ export default function Home() {
         <Container className="space-y-10">
           <Reveal>
             <SectionHeading
-              eyebrow="Client Perspective"
-              title="Long-term partnerships built on trust"
+              eyebrow={t.home.testimonials.eyebrow}
+              title={t.home.testimonials.title}
             />
           </Reveal>
           <Testimonials />

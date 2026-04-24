@@ -1,22 +1,26 @@
+"use client";
+
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteIntro } from "@/components/site-intro";
 import { TimelineSteps } from "@/components/timeline-steps";
-import { services } from "@/lib/data";
+import { useI18n } from "@/components/language-provider";
 
 export default function ServicesPage() {
+  const { t } = useI18n();
+
   return (
     <>
       <SiteIntro
-        eyebrow="Services"
-        title="Integrated construction services for high-value architecture."
-        description="From first feasibility studies to handover and aftercare, we provide a single accountable framework for quality, cost, and schedule control."
+        eyebrow={t.servicesPage.eyebrow}
+        title={t.servicesPage.title}
+        description={t.servicesPage.description}
       />
 
       <section className="pb-30">
         <Container className="space-y-10">
           <div className="grid gap-6 lg:grid-cols-3">
-            {services.map((service) => (
+            {t.servicesPage.services.map((service) => (
               <article key={service.title} className="rounded-2xl border border-white/10 bg-neutral-900/70 p-7">
                 <h2 className="font-grotesk text-2xl text-white">{service.title}</h2>
                 <p className="mt-4 text-sm leading-relaxed text-neutral-300">{service.description}</p>
@@ -34,9 +38,9 @@ export default function ServicesPage() {
 
           <div className="space-y-8 pt-12">
             <SectionHeading
-              eyebrow="Method"
-              title="A transparent process from strategy to execution"
-              description="Each phase has measurable deliverables, clear ownership, and coordinated communication between all stakeholders."
+              eyebrow={t.servicesPage.methodEyebrow}
+              title={t.servicesPage.methodTitle}
+              description={t.servicesPage.methodDescription}
             />
             <TimelineSteps />
           </div>

@@ -3,14 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navLinks } from "@/lib/data";
 import { Container } from "@/components/container";
+import { LanguageToggle } from "@/components/language-toggle";
+import { useI18n } from "@/components/language-provider";
 
 export function Navbar() {
   const pathname = usePathname();
+  const { t } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+
+  const links = [
+    { href: "/", label: t.nav.home },
+    { href: "/projects", label: t.nav.projects },
+    { href: "/services", label: t.nav.services },
+    { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -41,15 +51,15 @@ export function Navbar() {
           <button
             type="button"
             className="col-span-4 justify-self-end rounded-full border border-white/20 px-4 py-2 text-sm text-white md:hidden"
-            aria-label="Open navigation menu"
+            aria-label={t.nav.openMenuAria}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((prev) => !prev)}
           >
-            Menu
+            {t.nav.menu}
           </button>
 
-          <nav className="col-span-9 hidden items-center justify-end gap-8 md:flex" aria-label="Primary navigation">
-            {navLinks.map((link) => {
+          <nav className="col-span-9 hidden items-center justify-end gap-5 md:flex" aria-label={t.nav.primaryNavAria}>
+            {links.map((link) => {
               const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
               return (
                 <Link
@@ -61,13 +71,17 @@ export function Navbar() {
                 </Link>
               );
             })}
+            <LanguageToggle />
           </nav>
         </Container>
 
         {menuOpen ? (
           <Container className="pb-4 md:hidden">
-            <nav className="rounded-2xl border border-white/10 bg-neutral-900/95 p-3" aria-label="Mobile navigation">
-              {navLinks.map((link) => {
+            <nav className="space-y-3 rounded-2xl border border-white/10 bg-neutral-900/95 p-3" aria-label={t.nav.mobileNavAria}>
+              <div className="px-1">
+                <LanguageToggle />
+              </div>
+              {links.map((link) => {
                 const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
                 return (
                   <Link

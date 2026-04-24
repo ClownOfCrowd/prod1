@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { stats } from "@/lib/data";
 import { formatNumber } from "@/lib/utils";
+import { localeForLanguage } from "@/lib/i18n";
+import { useI18n } from "@/components/language-provider";
 
 function useInView() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -29,6 +30,8 @@ function useInView() {
 }
 
 export function StatsCounters() {
+  const { language, t } = useI18n();
+  const stats = t.stats;
   const { ref, inView } = useInView();
   const [values, setValues] = useState(stats.map(() => 0));
 
@@ -49,14 +52,14 @@ export function StatsCounters() {
     };
 
     requestAnimationFrame(tick);
-  }, [inView]);
+  }, [inView, stats]);
 
   return (
     <div ref={ref} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {stats.map((item, index) => (
         <article key={item.label} className="rounded-2xl border border-white/10 bg-neutral-900/70 p-6">
           <p className="font-grotesk text-4xl text-white">
-            {formatNumber(values[index])}
+            {formatNumber(values[index], localeForLanguage(language))}
             {item.suffix ?? ""}
           </p>
           <p className="mt-2 text-xs uppercase tracking-[0.14em] text-neutral-400">{item.label}</p>

@@ -1,13 +1,18 @@
+"use client";
+
 import { Container } from "@/components/container";
 import { SiteIntro } from "@/components/site-intro";
+import { useI18n } from "@/components/language-provider";
 
 export default function ProjectsLoading() {
+  const { t } = useI18n();
+
   return (
     <>
       <SiteIntro
-        eyebrow="Selected Portfolio"
-        title="Built work that balances design ambition and delivery certainty."
-        description="Preparing project overview."
+        eyebrow={t.projectsPage.eyebrow}
+        title={t.projectsPage.title}
+        description={t.projectsPage.loadingDescription}
       />
       <section className="pb-30">
         <Container>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CookieConsent } from "@/components/cookie-consent";
+import { LanguageProvider } from "@/components/language-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,12 +34,14 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-site text-neutral-100">
-        <div className="flex min-h-screen flex-col">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CookieConsent />
-        </div>
+        <LanguageProvider>
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <CookieConsent />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );
