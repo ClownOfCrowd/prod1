@@ -2,10 +2,14 @@ import { ProjectCategory } from "@/lib/types";
 
 export type Language = "en" | "ru" | "es";
 
-export const languageOptions: Array<{ code: Language; label: string }> = [
-  { code: "en", label: "EN" },
-  { code: "ru", label: "RU" },
-  { code: "es", label: "ES" },
+export const languageOptions: Array<{
+  code: Language;
+  shortLabel: string;
+  fullLabel: string;
+}> = [
+  { code: "en", shortLabel: "EN", fullLabel: "English" },
+  { code: "es", shortLabel: "ES", fullLabel: "Spanish" },
+  { code: "ru", shortLabel: "RU", fullLabel: "Russian" },
 ];
 
 export interface I18nDictionary {

@@ -5,7 +5,13 @@ import { Container } from "@/components/container";
 import { useI18n } from "@/components/language-provider";
 
 export function Footer() {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
+  const cityCountry =
+    language === "ru"
+      ? "Брюссель, Бельгия"
+      : language === "es"
+        ? "Bruselas, Bélgica"
+        : "Brussels, Belgium";
 
   return (
     <footer className="border-t border-white/10 py-12">
@@ -19,7 +25,7 @@ export function Footer() {
         <div className="md:col-span-3">
           <p className="text-sm uppercase tracking-[0.18em] text-brand-gold">{t.footer.office}</p>
           <p className="mt-3 text-sm text-neutral-300">Avenue Louise 231</p>
-          <p className="text-sm text-neutral-300">Brussels, Belgium</p>
+          <p className="text-sm text-neutral-300">{cityCountry}</p>
         </div>
         <div className="md:col-span-4 md:text-right">
           <Link href="mailto:hello@arcstoneconstruct.eu" className="text-sm text-neutral-200 hover:text-white">

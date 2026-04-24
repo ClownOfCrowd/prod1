@@ -5,13 +5,15 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Project } from "@/lib/types";
 import { useI18n } from "@/components/language-provider";
+import { getLocalizedProjectCopy } from "@/lib/project-localization";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
+  const localized = getLocalizedProjectCopy(project, language);
 
   return (
     <motion.article
@@ -31,9 +33,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <div className="space-y-3 p-6">
           <p className="text-xs uppercase tracking-[0.23em] text-brand-gold">{t.categories[project.category]}</p>
-          <h3 className="font-grotesk text-2xl text-white">{project.title}</h3>
-          <p className="text-sm text-neutral-400">{project.location}</p>
-          <p className="text-sm leading-relaxed text-neutral-300">{project.summary}</p>
+          <h3 className="font-grotesk text-2xl text-white">{localized.title ?? project.title}</h3>
+          <p className="text-sm text-neutral-400">{localized.location ?? project.location}</p>
+          <p className="text-sm leading-relaxed text-neutral-300">{localized.summary}</p>
         </div>
       </Link>
     </motion.article>

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -71,7 +72,17 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <LanguageToggle />
+            <motion.div
+              initial={false}
+              animate={{
+                opacity: scrolled ? 1 : 0.72,
+                y: scrolled ? 0 : -4,
+                scale: scrolled ? 1 : 0.98,
+              }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+            >
+              <LanguageToggle />
+            </motion.div>
           </nav>
         </Container>
 
@@ -79,7 +90,7 @@ export function Navbar() {
           <Container className="pb-4 md:hidden">
             <nav className="space-y-3 rounded-2xl border border-white/10 bg-neutral-900/95 p-3" aria-label={t.nav.mobileNavAria}>
               <div className="px-1">
-                <LanguageToggle />
+                <LanguageToggle compact />
               </div>
               {links.map((link) => {
                 const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
