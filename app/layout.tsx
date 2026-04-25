@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CookieConsent } from "@/components/cookie-consent";
 import { LanguageProvider } from "@/components/language-provider";
+import { StickyQuoteButton } from "@/components/sticky-quote-button";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,6 +41,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <CookieConsent />
+            <StickyQuoteButton />
           </div>
         </LanguageProvider>
       </body>

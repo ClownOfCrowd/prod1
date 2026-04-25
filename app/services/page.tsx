@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteIntro } from "@/components/site-intro";
 import { TimelineSteps } from "@/components/timeline-steps";
+import { ExtendedProjectProcessSection, ServicesDeepDiveSection } from "@/components/enterprise-sections";
 import { useI18n } from "@/components/language-provider";
 
 export default function ServicesPage() {
@@ -44,6 +45,9 @@ export default function ServicesPage() {
             />
             <TimelineSteps />
           </div>
+
+          <ServicesDeepDiveSection />
+          <ExtendedProjectProcessSection />
         </Container>
       </section>
     </>

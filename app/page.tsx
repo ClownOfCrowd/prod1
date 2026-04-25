@@ -9,6 +9,18 @@ import { SectionHeading } from "@/components/section-heading";
 import { StatsCounters } from "@/components/stats-counters";
 import { Testimonials } from "@/components/testimonials";
 import { TimelineSteps } from "@/components/timeline-steps";
+import {
+  CaseStudiesSection,
+  CertificationsComplianceSection,
+  ClientsPartnersSection,
+  CompanyKpisSection,
+  EngineeringApproachSection,
+  ExtendedProjectProcessSection,
+  FaqSection,
+  IndustriesServedSection,
+  InsightsSection,
+  SustainabilitySection,
+} from "@/components/enterprise-sections";
 import { projects } from "@/lib/data";
 import { useI18n } from "@/components/language-provider";
 
@@ -19,6 +31,12 @@ export default function Home() {
   return (
     <>
       <Hero />
+
+      <section className="pb-30">
+        <Container>
+          <EngineeringApproachSection />
+        </Container>
+      </section>
 
       <section className="pb-30">
         <Container className="space-y-10">
@@ -46,6 +64,12 @@ export default function Home() {
       </section>
 
       <section className="pb-30">
+        <Container>
+          <CaseStudiesSection />
+        </Container>
+      </section>
+
+      <section className="pb-30">
         <Container className="space-y-10">
           <Reveal>
             <SectionHeading
@@ -55,6 +79,12 @@ export default function Home() {
             />
           </Reveal>
           <StatsCounters />
+        </Container>
+      </section>
+
+      <section className="pb-30">
+        <Container>
+          <CompanyKpisSection />
         </Container>
       </section>
 
@@ -71,6 +101,12 @@ export default function Home() {
       </section>
 
       <section className="pb-30">
+        <Container>
+          <ExtendedProjectProcessSection />
+        </Container>
+      </section>
+
+      <section className="pb-30">
         <Container className="space-y-10">
           <Reveal>
             <SectionHeading
@@ -79,6 +115,17 @@ export default function Home() {
             />
           </Reveal>
           <Testimonials />
+        </Container>
+      </section>
+
+      <section className="pb-30">
+        <Container>
+          <IndustriesServedSection />
+          <ClientsPartnersSection />
+          <CertificationsComplianceSection />
+          <SustainabilitySection />
+          <InsightsSection />
+          <FaqSection />
         </Container>
       </section>
     </>

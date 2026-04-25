@@ -27,7 +27,7 @@ export default function ContactPage() {
             <p className="text-sm text-neutral-300">+32 2 901 88 40</p>
             <p className="text-sm text-neutral-300">hello@arcstoneconstruct.eu</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-neutral-900/75 p-7 lg:col-span-8">
+          <div id="request-quote" className="rounded-2xl border border-white/10 bg-neutral-900/75 p-7 lg:col-span-8">
             <ContactForm />
           </div>
         </Container>
