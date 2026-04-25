@@ -13,25 +13,24 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function detectLanguage(): Language {
-  if (typeof window === "undefined") return "en";
-
-  const fromStorage = window.localStorage.getItem(LANGUAGE_KEY);
-  if (fromStorage === "en" || fromStorage === "ru" || fromStorage === "es") {
-    return fromStorage;
-  }
-
-  const browserLanguage = window.navigator.language.toLowerCase();
-  if (browserLanguage.startsWith("ru")) return "ru";
-  if (browserLanguage.startsWith("es")) return "es";
-  return "en";
+function isLanguage(value: string | undefined): value is Language {
+  return value === "en" || value === "ru" || value === "es";
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => detectLanguage());
+export function LanguageProvider({
+  children,
+  initialLanguage,
+}: {
+  children: ReactNode;
+  initialLanguage?: Language;
+}) {
+  const [language, setLanguage] = useState<Language>(
+    isLanguage(initialLanguage) ? initialLanguage : "en"
+  );
 
   useEffect(() => {
     window.localStorage.setItem(LANGUAGE_KEY, language);
+    document.cookie = `${LANGUAGE_KEY}=${language}; path=/; max-age=31536000; samesite=lax`;
     document.documentElement.lang = language;
   }, [language]);
 
