@@ -9,7 +9,19 @@ export function Hero() {
   const { t } = useI18n();
 
   return (
-    <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
+    <section id="hero-section" className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden
+      >
+        <source src="/videos/hero-background.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-neutral-950/62" aria-hidden />
       <div className="hero-grid" aria-hidden />
       <Container className="relative grid grid-cols-12 gap-8">
         <div className="col-span-12 space-y-8 md:col-span-9">
